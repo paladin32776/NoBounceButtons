@@ -6,6 +6,7 @@
 #define MAX_BUTTONS 16
 #define DEBOUNCE_DELAY 50
 #define MIN_HOLD_TIME 2000
+#define MIN_HOLD_TIME_2 4000
 
 class NoBounceButtons
 {

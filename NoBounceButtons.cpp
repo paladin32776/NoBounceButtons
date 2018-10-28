@@ -55,9 +55,12 @@ void NoBounceButtons::check()
       // Check for short click: state=HIGH and time since last state change <MIN_HOLD_TIME
       if ((State[id] == HIGH) && (Time-LastStateTime[id]<MIN_HOLD_TIME))
         Action[id] = 1;
-      // Check for long click: state=HIGH and time since last state change >=MIN_HOLD_TIME
-      else if ((State[id] == HIGH) && (Time-LastStateTime[id]>=MIN_HOLD_TIME))
+      // Check for 2s long click: state=HIGH and time since last state change >=MIN_HOLD_TIME but <MIN_HOLD_TIME_2
+      else if ((State[id] == HIGH) && (Time-LastStateTime[id]>=MIN_HOLD_TIME) && (Time-LastStateTime[id]<MIN_HOLD_TIME_2))
         Action[id] = 2;
+      // Check for 4s long click: state=HIGH and time since last state change >=MIN_HOLD_TIME_2
+      else if ((State[id] == HIGH) && (Time-LastStateTime[id]>=MIN_HOLD_TIME_2))
+        Action[id] = 3;
       LastStateTime[id] = Time; // make the current time the last state change time
     }
   }
