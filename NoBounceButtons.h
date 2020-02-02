@@ -1,4 +1,5 @@
 #include "Arduino.h"
+#include "TimeRingBuffer.h"
 
 #ifndef NOBOUNCEBUTTONS_H
 #define NOBOUNCEBUTTONS_H
@@ -9,19 +10,25 @@
 #define MIN_HOLD_TIME_2 8000
 #define DOUBLE_CLICK_TIME 300
 
+#define TIMERINGBUFFER_CNT 6
+
 class NoBounceButtons
 {
 	private:
 		unsigned char N = 0;
 		unsigned char Pin[MAX_BUTTONS];
+		bool ActiveLow[MAX_BUTTONS];
 		unsigned char State[MAX_BUTTONS];          // current "official" state of the button
-		unsigned long LastStateTime[MAX_BUTTONS];  // last time the state changed
+		bool StateChange[MAX_BUTTONS];
+		// unsigned long LastStateTime[MAX_BUTTONS];  // last time the state changed
+		TimeRingBuffer* LastStateTime[MAX_BUTTONS];  // last time the state changed
 		unsigned char LastValue[MAX_BUTTONS];      // previous reading from the input pin
 		unsigned long LastValueTime[MAX_BUTTONS] ;   	// last time the input pin reading changed
 		unsigned char Action[MAX_BUTTONS];
   public:
     NoBounceButtons(); 											// default constructor
     char create(unsigned char pin); 				// create a new button and return id
+		char create(unsigned char pin, bool activelow); 				// create a new button and return id
   	unsigned char action(unsigned char id);	// check if button has been pressed
   	void reset(unsigned char id);						// reset button action
     void check();														// call in main loop; contains all the important code
