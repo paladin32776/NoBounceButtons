@@ -12,6 +12,11 @@
 
 #define TIMERINGBUFFER_CNT 6
 
+#define NBB_CLICK 1
+#define NBB_LONG_CLICK 2
+#define NBB_EXTRA_LONG_CLICK 3
+#define NBB_DOUBLE_CLICK 4
+
 class NoBounceButtons
 {
 	private:
