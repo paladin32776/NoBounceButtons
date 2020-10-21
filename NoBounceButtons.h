@@ -1,5 +1,6 @@
 #include "Arduino.h"
 #include "TimeRingBuffer.h"
+#include "limits.h"
 
 #ifndef NOBOUNCEBUTTONS_H
 #define NOBOUNCEBUTTONS_H

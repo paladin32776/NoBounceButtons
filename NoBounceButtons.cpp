@@ -1,5 +1,4 @@
 #include "NoBounceButtons.h"
-#include "limits.h"
 
 NoBounceButtons::NoBounceButtons() // default constructor
 {
@@ -7,7 +6,7 @@ NoBounceButtons::NoBounceButtons() // default constructor
 
 char NoBounceButtons::create(unsigned char pin)  // create a new button
 {
-  create(pin, true);
+  return create(pin, true);
 }
 
 char NoBounceButtons::create(unsigned char pin, bool activelow)  // create a new button
